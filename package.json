@@ -1,0 +1,22 @@
+{
+  "name": "generator-mdworld-toolchain",
+  "version": "0.0.0",
+  "description": "sets up the mdworld.nl toolchain",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "files": [
+    "app",
+    "router"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "M.D. van Es",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^0.20.3",
+    "yosay": "^1.0.5"
+  }
+}
