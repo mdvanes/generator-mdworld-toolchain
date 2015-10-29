@@ -17,9 +17,13 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'), // read package.json to expose it variables under pkg
 
         watch: {
+            sass: {
+                files: ['_sass/**/*.scss'],
+                tasks: ['sass:dev']
+            },
             script: {
-                files: ['js/*.js'],
-                tasks: ['build']
+                files: ['_js/**/*.js'],
+                tasks: ['jscs', 'jshint', 'uglify:dev']
             }
         },
 
@@ -85,10 +89,26 @@ module.exports = function(grunt) {
                     'js/<%= pkg.name.toLowerCase() %>.min.js': src.scripts
                 }
             }
+        },
+
+
+
+        'http-server': {
+            'dev': {
+                root: '.', //'../../../',
+                runInBackground: true
+            }
+        },
+
+        'notify_hooks': {
+            options: {
+                enabled: true,
+                'max_jshint_notifications': 5, // maximum number of notifications from jshint output
+                title: '<%= pkg.name.toLowerCase() %>', // defaults to the name in package.json, or will use project directory's name
+                success: false, // whether successful grunt executions should be notified automatically
+                duration: 3 // the duration of notification in seconds, for `notify-send only
+            }
         }
-
-
-
 
 
     });
