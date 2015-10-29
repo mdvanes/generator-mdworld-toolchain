@@ -7,12 +7,9 @@
 
     Sets up the basic toolchain.
     Creates a package.json and Gruntfile with configurations.
-    Creates file dirs (_js, _sass, etc).
-    Adds _dist (etc?) to .gitignore
 
     Tested with Yeoman 1.4.8
 
-    * rename to something like: "mdworld-toolchain-generator"
     * run locally for debugging:
         * set up: ```npm link``` now a the local project is accessible globally
         * in any dir run ```yo mdworld-toolchain```
@@ -24,15 +21,8 @@ var generators = require('yeoman-generator'),
 
 // an example: https://github.com/yeoman/generator-gruntplugin/blob/master/app/index.js
 
-
-// TODO write .jscs
-// TODO write .jshintrc
-// TODO add libsass
-// TODO add uglify
-// TODO add watch
-// TODO add http-server
-// TODO add notify_hooks (grunt-notify)
-// TODO add kot2html/clean/copy/compress
+// TODO add browsersync?
+// TODO add dist? (kot2html/clean/copy/compress) -> also _dist in gitignore
 // TODO add karma?
 // TODO add plato, complexity
 
@@ -40,14 +30,11 @@ var generators = require('yeoman-generator'),
 
 
 module.exports = generators.Base.extend({
-    intro: function () {
+    intro: function() {
         //console.log('method 1 just ran');
         console.log(yosay('Welcome to my personal web toolchain generator!'));
     },
-    method2: function () {
-        console.log('method 2 just ran');
-    },
-    askFor: function () {
+    askFor: function() {
         var cb = this.async();
         var prompts = [
             {
@@ -70,23 +57,28 @@ module.exports = generators.Base.extend({
             name: this.props.name,
             version: '0.0.0',
             author: 'M.D. van Es',
+            description: '',
+            repository: {
+                type: 'git',
+                url: ''
+            },
             private: true,
             license: 'closed'
         };
-
-        //this.write('package.json', JSON.stringify(pkgFile));
         this.write('package.json', JSON.stringify(pkgFile, null, 4));
     },
-    //installDevDependencies: function() {
-    //    this.npmInstall(['grunt'], { 'saveDev': true });
-    //    this.npmInstall(['grunt-contrib-jshint'], { 'saveDev': true });
-    //    this.npmInstall(['grunt-contrib-watch'], { 'saveDev': true });
-    //    this.npmInstall(['grunt-jscs'], { 'saveDev': true });
-    //    this.npmInstall(['grunt-notify'], { 'saveDev': true });
-    //    this.npmInstall(['grunt-sass'], { 'saveDev': true });
-    //    this.npmInstall(['load-grunt-tasks'], { 'saveDev': true });
-    //    this.npmInstall(['time-grunt'], { 'saveDev': true });
-    //},
+    installDevDependencies: function() {
+        this.npmInstall(['grunt'], { 'saveDev': true });
+        this.npmInstall(['grunt-contrib-jshint'], { 'saveDev': true });
+        this.npmInstall(['grunt-contrib-uglify'], { 'saveDev': true });
+        this.npmInstall(['grunt-contrib-watch'], { 'saveDev': true });
+        this.npmInstall(['grunt-http-server'], { 'saveDev': true });
+        this.npmInstall(['grunt-jscs'], { 'saveDev': true });
+        this.npmInstall(['grunt-notify'], { 'saveDev': true });
+        this.npmInstall(['grunt-sass'], { 'saveDev': true });
+        this.npmInstall(['load-grunt-tasks'], { 'saveDev': true });
+        this.npmInstall(['time-grunt'], { 'saveDev': true });
+    },
     //writeGruntfile: function() {
     //    // TODO use custom sorting (pkg first etc) instead of auto sorting
     //    this.gruntfile.insertConfig('pkg', 'grunt.file.readJSON(\'package.json\')');
@@ -105,11 +97,38 @@ module.exports = generators.Base.extend({
     //    this.gruntfile.insertConfig('\'notify_hooks\'', JSON.stringify(notifyHooksConfig));
     //},
     copyTemplates: function() {
-        this.fs.copyTpl(
-            this.templatePath('Gruntfile.js'),
-            this.destinationPath('Gruntfile.js'),
-            {  }
+        this.fs.copy(
+            this.templatePath('_js/app.js'),
+            this.destinationPath('_js/app.js')
         );
+        this.fs.copy(
+            this.templatePath('_sass/styles.scss'),
+            this.destinationPath('_sass/styles.scss')
+        );
+        this.fs.copyTpl(
+            this.templatePath('_stubs/index.html'),
+            this.destinationPath('_stubs/index.html'),
+            { projectName: this.props.name }
+        );
+        this.fs.copy(
+            this.templatePath('.gitignore'),
+            this.destinationPath('.gitignore')
+        );
+        this.fs.copy(
+            this.templatePath('.jscsrc'),
+            this.destinationPath('.jscsrc')
+        );
+        this.fs.copy(
+            this.templatePath('.jshintrc'),
+            this.destinationPath('.jshintrc')
+        );
+        this.fs.copy(
+            this.templatePath('Gruntfile.js'),
+            this.destinationPath('Gruntfile.js')
+        );
+    },
+    outtro: function() {
+        console.log('run ```grunt``` and visit the server at http://localhost:8282');
     }
 });
 
