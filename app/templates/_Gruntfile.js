@@ -91,12 +91,22 @@ module.exports = function(grunt) {
             }
         },
 
-
-
-        'http-server': {
-            'dev': {
-                root: '.', //'../../../',
-                runInBackground: true
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src : [
+                        'js/*.js',
+                        'css/*.css',
+                        'img/*.*',
+                        '_stubs/*.html'
+                    ]
+                },
+                options: {
+                    server: './',
+                    watchTask: true, // watch runs after browserSync
+                    port: 8282, // default port is 3000, browserSync admin is on http://localhost:3001/
+                    open: false // don't open the browser automatically
+                }
             }
         },
 
@@ -109,13 +119,11 @@ module.exports = function(grunt) {
                 duration: 3 // the duration of notification in seconds, for `notify-send only
             }
         }
-
-
     });
 
     // Tasks
     //grunt.registerTask('default-watch', ['http-server', 'karma:dev:start', 'watch']); /* for running when validators fail */
     //grunt.registerTask('default', ['jscs', 'jshint', 'karma:dist', 'uglify:dev', 'compass:dev', 'default-watch']);
-    grunt.registerTask('default-watch', ['http-server', 'watch']); /* for running when validators fail */
+    grunt.registerTask('default-watch', ['browserSync', 'watch']); /* for running when validators fail */
     grunt.registerTask('default', ['jscs', 'jshint', 'uglify:dev', 'sass:dev', 'default-watch']);
 };
