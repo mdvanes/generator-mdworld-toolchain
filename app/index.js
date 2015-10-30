@@ -3,8 +3,6 @@
  */
 
 /*
-    TODO
-
     Sets up the basic toolchain.
     Creates a package.json and Gruntfile with configurations.
 
@@ -18,20 +16,10 @@
 var generators = require('yeoman-generator'),
     yosay = require('yosay');
 
-
 // an example: https://github.com/yeoman/generator-gruntplugin/blob/master/app/index.js
-
-// TODO add browsersync?
-// TODO add dist? (kot2html/clean/copy/compress) -> also _dist in gitignore
-// TODO add karma?
-// TODO add plato, complexity
-
-
-
 
 module.exports = generators.Base.extend({
     intro: function() {
-        //console.log('method 1 just ran');
         console.log(yosay('Welcome to my personal web toolchain generator!'));
     },
     askFor: function() {
@@ -47,7 +35,7 @@ module.exports = generators.Base.extend({
         var self = this;
 
         this.prompt(prompts, function(props) {
-            console.log('props', props);
+            //console.log('props', props);
             self.props = props;
             cb();
         });
@@ -69,10 +57,10 @@ module.exports = generators.Base.extend({
     },
     installDevDependencies: function() {
         this.npmInstall(['grunt'], { 'saveDev': true });
+        this.npmInstall(['grunt-browser-sync'], { 'saveDev': true });
         this.npmInstall(['grunt-contrib-jshint'], { 'saveDev': true });
         this.npmInstall(['grunt-contrib-uglify'], { 'saveDev': true });
         this.npmInstall(['grunt-contrib-watch'], { 'saveDev': true });
-        this.npmInstall(['grunt-http-server'], { 'saveDev': true });
         this.npmInstall(['grunt-jscs'], { 'saveDev': true });
         this.npmInstall(['grunt-notify'], { 'saveDev': true });
         this.npmInstall(['grunt-sass'], { 'saveDev': true });
@@ -128,6 +116,6 @@ module.exports = generators.Base.extend({
         );
     },
     outtro: function() {
-        console.log('run ```grunt``` and visit the server at http://localhost:8282');
+        console.log('run ```grunt``` and visit the server at http://localhost:8282/_stubs/');
     }
 });
