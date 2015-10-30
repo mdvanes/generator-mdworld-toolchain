@@ -111,19 +111,19 @@ module.exports = generators.Base.extend({
             { projectName: this.props.name }
         );
         this.fs.copy(
-            this.templatePath('.gitignore'),
+            this.templatePath('_.gitignore'),
             this.destinationPath('.gitignore')
         );
         this.fs.copy(
-            this.templatePath('.jscsrc'),
+            this.templatePath('_.jscsrc'),
             this.destinationPath('.jscsrc')
         );
         this.fs.copy(
-            this.templatePath('.jshintrc'),
+            this.templatePath('_.jshintrc'),
             this.destinationPath('.jshintrc')
         );
         this.fs.copy(
-            this.templatePath('Gruntfile.js'),
+            this.templatePath('_Gruntfile.js'),
             this.destinationPath('Gruntfile.js')
         );
     },
@@ -131,14 +131,3 @@ module.exports = generators.Base.extend({
         console.log('run ```grunt``` and visit the server at http://localhost:8282');
     }
 });
-
-//var MyWebappGenerator = module.exports = function MyWebAppGenerator(args, options) {
-//    generators.generators.Base.apply(this, arguments);
-//};
-
-
-
-
-//MyWebappGenerator.prototype.intro = function() {
-//    console.log(yosay('Welcome to my personal web toolchain generator!'));
-//};
