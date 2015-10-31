@@ -1,6 +1,6 @@
 {
   "name": "generator-mdworld-toolchain",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Sets up the mdworld.nl toolchain",
   "repository": {
     "type": "git",
@@ -18,5 +18,10 @@
   "dependencies": {
     "yeoman-generator": "^0.20.3",
     "yosay": "^1.0.5"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-release": "^0.13.0",
+    "load-grunt-tasks": "^3.3.0"
   }
 }
