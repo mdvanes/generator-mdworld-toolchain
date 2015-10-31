@@ -1,6 +1,6 @@
 {
   "name": "generator-mdworld-toolchain",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Sets up the mdworld.nl toolchain",
   "repository": {
     "type": "git",
