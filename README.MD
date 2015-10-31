@@ -36,3 +36,14 @@ The goal of this generator is to set up as fast as possible, so there is very li
 * time-grunt
 
 Scaffolds \_js, \_sass, \_stubs dirs and .gitignore, .jscsrc, .jshintrc, Gruntfile.js files.
+
+
+
+
+# Development guide
+
+## Releasing
+
+dry run:
+
+```grunt release --no-write``` 
