@@ -58,10 +58,12 @@ module.exports = generators.Base.extend({
     installDevDependencies: function() {
         this.npmInstall(['grunt'], { 'saveDev': true });
         this.npmInstall(['grunt-browser-sync'], { 'saveDev': true });
+        this.npmInstall(['grunt-contrib-imagemin'], { 'saveDev': true });
         this.npmInstall(['grunt-contrib-jshint'], { 'saveDev': true });
         this.npmInstall(['grunt-contrib-uglify'], { 'saveDev': true });
         this.npmInstall(['grunt-contrib-watch'], { 'saveDev': true });
         this.npmInstall(['grunt-jscs'], { 'saveDev': true });
+        this.npmInstall(['grunt-newer'], { 'saveDev': true });
         this.npmInstall(['grunt-notify'], { 'saveDev': true });
         this.npmInstall(['grunt-sass'], { 'saveDev': true });
         this.npmInstall(['load-grunt-tasks'], { 'saveDev': true });
@@ -85,6 +87,10 @@ module.exports = generators.Base.extend({
     //    this.gruntfile.insertConfig('\'notify_hooks\'', JSON.stringify(notifyHooksConfig));
     //},
     copyTemplates: function() {
+        this.fs.copy(
+            this.templatePath('_img/logo.png'),
+            this.destinationPath('_img/logo.png')
+        );
         this.fs.copy(
             this.templatePath('_js/app.js'),
             this.destinationPath('_js/app.js')
