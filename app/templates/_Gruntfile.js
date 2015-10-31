@@ -24,6 +24,10 @@ module.exports = function(grunt) {
             script: {
                 files: ['_js/**/*.js'],
                 tasks: ['jscs', 'jshint', 'uglify:dev']
+            },
+            images: {
+                files: ['_img/*.*'],
+                tasks: ['newer:imagemin:dev']
             }
         },
 
@@ -91,6 +95,17 @@ module.exports = function(grunt) {
             }
         },
 
+        imagemin: {
+            dev: {
+                files: [{
+                    expand: true,
+                    cwd: '_img/',
+                    src: ['**/*.{png,jpg,gif}'],
+                    dest: 'img/'
+                }]
+            }
+        },
+
         browserSync: {
             dev: {
                 bsFiles: {
@@ -125,5 +140,5 @@ module.exports = function(grunt) {
     //grunt.registerTask('default-watch', ['http-server', 'karma:dev:start', 'watch']); /* for running when validators fail */
     //grunt.registerTask('default', ['jscs', 'jshint', 'karma:dist', 'uglify:dev', 'compass:dev', 'default-watch']);
     grunt.registerTask('default-watch', ['browserSync', 'watch']); /* for running when validators fail */
-    grunt.registerTask('default', ['jscs', 'jshint', 'uglify:dev', 'sass:dev', 'default-watch']);
+    grunt.registerTask('default', ['jscs', 'jshint', 'uglify:dev', 'sass:dev', 'newer:imagemin:dev', 'default-watch']);
 };

@@ -2,3 +2,10 @@ html, body {
     background: #444;
     color: white;
 }
+
+h1 {
+    background: url('../img/logo.png') no-repeat;
+    background-size: 100px 85px;
+    height: 100px;
+    padding-left: 120px;
+}
