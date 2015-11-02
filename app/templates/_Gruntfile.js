@@ -120,6 +120,7 @@ module.exports = function(grunt) {
                     server: './',
                     watchTask: true, // watch runs after browserSync
                     port: 8282, // default port is 3000, browserSync admin is on http://localhost:3001/
+                    directory: true, // show directory listing
                     open: false // don't open the browser automatically
                 }
             }
