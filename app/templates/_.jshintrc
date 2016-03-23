@@ -11,13 +11,12 @@
     "quotmark": "single",
     "regexp": true,
     "undef": true,
-    "unused": true,
+    "unused": "vars",
     "strict": true,
     "trailing": true,
 
     "browser": true,
     "devel": true,
-    "jquery": true,
     "globals": {
         "define": false
     }
