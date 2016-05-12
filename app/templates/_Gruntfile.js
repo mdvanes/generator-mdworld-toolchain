@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         watch: {
             sass: {
                 files: ['_sass/**/*.scss'],
-                tasks: ['sass:dev']
+                tasks: ['sasslint:all', 'sass:dev']
             },
             script: {
                 files: ['_js/**/*.js'],
@@ -29,6 +29,13 @@ module.exports = function(grunt) {
                 files: ['_img/*.*'],
                 tasks: ['newer:imagemin:dev']
             }
+        },
+
+        sasslint: {
+            options: {
+                configFile: 'sass-lint.yml'
+            },
+            all: ['_sass/**/*.scss']
         },
 
         sass: {
@@ -138,8 +145,6 @@ module.exports = function(grunt) {
     });
 
     // Tasks
-    //grunt.registerTask('default-watch', ['http-server', 'karma:dev:start', 'watch']); /* for running when validators fail */
-    //grunt.registerTask('default', ['jscs', 'jshint', 'karma:dist', 'uglify:dev', 'compass:dev', 'default-watch']);
     grunt.registerTask('default-watch', ['browserSync', 'watch']); /* for running when validators fail */
-    grunt.registerTask('default', ['jscs', 'jshint', 'uglify:dev', 'sass:dev', 'newer:imagemin:dev', 'default-watch']);
+    grunt.registerTask('default', ['jscs', 'jshint', 'uglify:dev', 'sasslint:all', 'sass:dev', 'newer:imagemin:dev', 'default-watch']);
 };

@@ -66,6 +66,7 @@ module.exports = generators.Base.extend({
         this.npmInstall(['grunt-newer'], { 'saveDev': true });
         this.npmInstall(['grunt-notify'], { 'saveDev': true });
         this.npmInstall(['grunt-sass'], { 'saveDev': true });
+        this.npmInstall(['grunt-sass-lint'], { 'saveDev': true });
         this.npmInstall(['load-grunt-tasks'], { 'saveDev': true });
         this.npmInstall(['time-grunt'], { 'saveDev': true });
     },
@@ -115,6 +116,10 @@ module.exports = generators.Base.extend({
         this.fs.copy(
             this.templatePath('_.jshintrc'),
             this.destinationPath('.jshintrc')
+        );
+        this.fs.copy(
+            this.templatePath('_sass-lint.yml'),
+            this.destinationPath('sass-lint.yml')
         );
         this.fs.copy(
             this.templatePath('_Gruntfile.js'),
