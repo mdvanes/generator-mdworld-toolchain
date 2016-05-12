@@ -13,7 +13,6 @@ Install or update this Yeoman generator with:
 ```
 npm i -g generator-mdworld-toolchain
 ```
-
 Then scaffold a project by running in the target dir:
 
 ```
@@ -60,6 +59,12 @@ Source: http://yeoman.io/authoring/
 
 Undo by uninstalling: ```npm remove -g generator-mdworld-toolchain``` Or manually removing. The location of local 
 packages can be retrieved with: ```npm config list``` (look for "prefix")
+
+## Check version
+
+It is possible to check the installed version of a npm package with (but this doesn't seem to work for linked packages):
+
+```npm ls -g mdworld-toolchain```
 
 ## Releasing
 
