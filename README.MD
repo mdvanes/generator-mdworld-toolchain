@@ -1,6 +1,14 @@
+![Build Status](https://travis-ci.org/mdvanes/generator-mdworld-toolchain.svg?branch=master) [![npm version](https://badge.fury.io/js/generator-mdworld-toolchain.svg)](https://badge.fury.io/js/generator-mdworld-toolchain)
+
 # Installation
 
-Install this Yeoman generator with:
+The generator requires Yeoman:
+
+```
+npm i -g yo
+```
+
+Install or update this Yeoman generator with:
 
 ```
 npm i -g generator-mdworld-toolchain
@@ -31,6 +39,7 @@ The goal of this generator is to set up as fast as possible, so there is very li
 * grunt-contrib-watch
 * grunt-jscs
 * grunt-notify
+* grunt-sass-lint
 * grunt-sass
 * load-grunt-tasks
 * time-grunt
@@ -38,12 +47,29 @@ The goal of this generator is to set up as fast as possible, so there is very li
 Scaffolds \_js, \_sass, \_stubs dirs and .gitignore, .jscsrc, .jshintrc, Gruntfile.js files.
 
 
-
-
 # Development guide
+
+## Testing the generator before publishing
+
+From the root of the generator project (in the generator-mdworld-toolchain/ folder), type: ```npm link```
+
+That will install your project dependencies and symlink a global module to your local file. After npm is done, 
+you'll be able to call ```yo mdworld-toolchain``` 
+
+Source: http://yeoman.io/authoring/
+
+Undo by uninstalling: ```npm remove -g generator-mdworld-toolchain``` Or manually removing. The location of local 
+packages can be retrieved with: ```npm config list``` (look for "prefix")
 
 ## Releasing
 
+Grunt release can be used to update the package.json number, create a git tag, create a CHANGELOG and publish to npm. 
+
 dry run:
 
-```grunt release --no-write``` 
+```grunt release --no-write```
+
+finalize:
+
+```grunt release```
+ 
