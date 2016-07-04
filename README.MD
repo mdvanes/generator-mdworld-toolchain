@@ -45,6 +45,10 @@ The goal of this generator is to set up as fast as possible, so there is very li
 
 Scaffolds \_js, \_sass, \_stubs dirs and .gitignore, .jscsrc, .jshintrc, Gruntfile.js files.
 
+The package.json will be set up with the default windows username, and if it's not available, it will fallback to my name. 
+
+The default license in the package.json is "closed" and "private" is set to true to prevent accidental publishing to NPM.
+
 
 # Development guide
 
