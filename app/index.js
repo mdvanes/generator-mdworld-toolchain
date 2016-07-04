@@ -14,37 +14,41 @@
  */
 
 var generators = require('yeoman-generator'),
-    yosay = require('yosay');
+    yosay = require('yosay'),
+    path = require('path'),
+    pkg = require('../package.json');
 
 // an example: https://github.com/yeoman/generator-gruntplugin/blob/master/app/index.js
 
 module.exports = generators.Base.extend({
     intro: function() {
-        console.log(yosay('Welcome to my personal web toolchain generator!'));
+        console.log(yosay('Welcome to the MDWorld.nl web toolchain generator v' + pkg.version + '!'));
     },
     askFor: function() {
         var cb = this.async();
         var prompts = [
             {
                 name: 'name',
-                message: 'project name'/*,
-                default: 'baz'*/
+                message: 'project name'
             }
         ];
 
         var self = this;
 
         this.prompt(prompts, function(props) {
-            //console.log('props', props);
             self.props = props;
             cb();
         });
     },
     writePackageJson: function() {
+        var userName = process.env['USERPROFILE'].split(path.sep).pop();
+        if(!userName || userName.length === '0' || userName === 'm.van.es') {
+            userName = 'M.D. van Es';
+        }
         var pkgFile = {
             name: this.props.name,
             version: '0.0.0',
-            author: 'M.D. van Es',
+            author: userName,
             description: '',
             repository: {
                 type: 'git',
