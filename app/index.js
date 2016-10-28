@@ -6,7 +6,7 @@
     Sets up the basic toolchain.
     Creates a package.json and Gruntfile with configurations.
 
-    Tested with Yeoman 1.4.8
+    Tested with Yeoman 1.8.5
 
     * run locally for debugging:
         * set up: ```npm link``` now a the local project is accessible globally
@@ -71,6 +71,8 @@ module.exports = generators.Base.extend({
         this.npmInstall(['grunt-notify'], { 'saveDev': true });
         this.npmInstall(['grunt-sass'], { 'saveDev': true });
         this.npmInstall(['grunt-sass-lint'], { 'saveDev': true });
+        this.npmInstall(['jasmine-core'], { 'saveDev': true });
+        this.npmInstall(['karma', 'karma-coverage', 'karma-jasmine', 'karma-phantomjs-launcher', 'grunt-karma'], { 'saveDev': true });
         this.npmInstall(['load-grunt-tasks'], { 'saveDev': true });
         this.npmInstall(['time-grunt'], { 'saveDev': true });
     },
@@ -110,6 +112,10 @@ module.exports = generators.Base.extend({
             { projectName: this.props.name }
         );
         this.fs.copy(
+            this.templatePath('_test/appSpec.js'),
+            this.destinationPath('_test/appSpec.js')
+        );
+        this.fs.copy(
             this.templatePath('_.gitignore'),
             this.destinationPath('.gitignore')
         );
@@ -128,6 +134,10 @@ module.exports = generators.Base.extend({
         this.fs.copy(
             this.templatePath('_Gruntfile.js'),
             this.destinationPath('Gruntfile.js')
+        );
+        this.fs.copy(
+            this.templatePath('_karma.conf.js'),
+            this.destinationPath('karma.conf.js')
         );
     },
     outtro: function() {

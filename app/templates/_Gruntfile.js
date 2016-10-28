@@ -22,8 +22,8 @@ module.exports = function(grunt) {
                 tasks: ['sasslint:all', 'sass:dev']
             },
             script: {
-                files: ['_js/**/*.js'],
-                tasks: ['jscs', 'jshint', 'uglify:dev']
+                files: ['_js/**/*.js', '_test/**/*.js'],
+                tasks: ['jscs', 'jshint', 'karma:dev:run', 'uglify:dev']
             },
             images: {
                 files: ['_img/*.*'],
@@ -113,6 +113,17 @@ module.exports = function(grunt) {
             }
         },
 
+        karma: {
+            dev: {
+                configFile: 'karma.conf.js',
+                background: true,
+                singleRun: false
+            },
+            dist: {
+                configFile: 'karma.conf.js'
+            }
+        },
+
         browserSync: {
             dev: {
                 bsFiles: {
@@ -145,6 +156,6 @@ module.exports = function(grunt) {
     });
 
     // Tasks
-    grunt.registerTask('default-watch', ['browserSync', 'watch']); /* for running when validators fail */
-    grunt.registerTask('default', ['jscs', 'jshint', 'uglify:dev', 'sasslint:all', 'sass:dev', 'newer:imagemin:dev', 'default-watch']);
+    grunt.registerTask('default-watch', ['browserSync', 'karma:dev:start', 'watch']); /* for running when validators fail */
+    grunt.registerTask('default', ['jscs', 'jshint', 'karma:dist', 'uglify:dev', 'sasslint:all', 'sass:dev', 'newer:imagemin:dev', 'default-watch']);
 };
