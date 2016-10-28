@@ -40,45 +40,12 @@ The goal of this generator is to set up as fast as possible, so there is very li
 * grunt-notify
 * grunt-sass-lint
 * grunt-sass
+* grunt-karma
 * load-grunt-tasks
 * time-grunt
 
-Scaffolds \_js, \_sass, \_stubs dirs and .gitignore, .jscsrc, .jshintrc, Gruntfile.js files.
+Scaffolds \_js, \_sass, \_stubs, _test dirs and .gitignore, .jscsrc, .jshintrc, Gruntfile.js, karma.conf.js files.
 
 The package.json will be set up with the default windows username, and if it's not available, it will fallback to my name. 
 
 The default license in the package.json is "closed" and "private" is set to true to prevent accidental publishing to NPM.
-
-
-# Development guide
-
-## Testing the generator before publishing
-
-From the root of the generator project (in the generator-mdworld-toolchain/ folder), type: ```npm link```
-
-That will install your project dependencies and symlink a global module to your local file. After npm is done, 
-you'll be able to call ```yo mdworld-toolchain``` 
-
-Source: http://yeoman.io/authoring/
-
-Undo by uninstalling: ```npm remove -g generator-mdworld-toolchain``` Or manually removing. The location of local 
-packages can be retrieved with: ```npm config list``` (look for "prefix")
-
-## Check version
-
-It is possible to check the installed version of a npm package with (but this doesn't seem to work for linked packages):
-
-```npm ls -g mdworld-toolchain```
-
-## Releasing
-
-Grunt release can be used to update the package.json number, create a git tag, create a CHANGELOG and publish to npm. 
-
-dry run:
-
-```grunt release --no-write```
-
-finalize:
-
-```grunt release```
- 
