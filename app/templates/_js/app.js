@@ -1,5 +1,8 @@
 (function() {
     'use strict';
 
-    console.log('app.js');
+    window.myAppTest = function() {
+        return 'app.js';
+    };
+    console.log(myAppTest());
 })();
