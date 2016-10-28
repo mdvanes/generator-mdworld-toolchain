@@ -157,5 +157,5 @@ module.exports = function(grunt) {
 
     // Tasks
     grunt.registerTask('default-watch', ['browserSync', 'karma:dev:start', 'watch']); /* for running when validators fail */
-    grunt.registerTask('default', ['jscs', 'jshint', 'karma:dist', 'uglify:dev', 'sasslint:all', 'sass:dev', 'newer:imagemin:dev', 'default-watch']);
+    grunt.registerTask('default', ['jscs', 'jshint', 'uglify:dev', 'sasslint:all', 'sass:dev', 'newer:imagemin:dev', 'default-watch']);
 };
