@@ -60,39 +60,21 @@ module.exports = generators.Base.extend({
         this.write('package.json', JSON.stringify(pkgFile, null, 4));
     },
     installDevDependencies: function() {
-        this.npmInstall(['grunt'], { 'saveDev': true });
-        this.npmInstall(['grunt-browser-sync'], { 'saveDev': true });
-        this.npmInstall(['grunt-contrib-imagemin'], { 'saveDev': true });
-        this.npmInstall(['grunt-contrib-jshint'], { 'saveDev': true });
-        this.npmInstall(['grunt-contrib-uglify'], { 'saveDev': true });
-        this.npmInstall(['grunt-contrib-watch'], { 'saveDev': true });
-        this.npmInstall(['grunt-jscs'], { 'saveDev': true });
-        this.npmInstall(['grunt-newer'], { 'saveDev': true });
-        this.npmInstall(['grunt-notify'], { 'saveDev': true });
-        this.npmInstall(['grunt-sass'], { 'saveDev': true });
-        this.npmInstall(['grunt-sass-lint'], { 'saveDev': true });
-        this.npmInstall(['jasmine-core'], { 'saveDev': true });
-        this.npmInstall(['karma', 'karma-coverage', 'karma-jasmine', 'karma-phantomjs-launcher', 'grunt-karma'], { 'saveDev': true });
-        this.npmInstall(['load-grunt-tasks'], { 'saveDev': true });
-        this.npmInstall(['time-grunt'], { 'saveDev': true });
+        this.npmInstall([
+            'grunt',
+            'grunt-browser-sync',
+            'grunt-contrib-imagemin',
+            'grunt-contrib-jshint',
+            'grunt-contrib-uglify',
+            'grunt-contrib-watch',
+            'grunt-jscs',
+            'grunt-newer',
+            'grunt-notify',
+            'grunt-sass', 'grunt-sass-lint',
+            'jasmine-core', 'karma', 'karma-coverage', 'karma-jasmine', 'karma-phantomjs-launcher', 'grunt-karma',
+            'load-grunt-tasks',
+            'time-grunt'], { 'saveDev': true });
     },
-    //writeGruntfile: function() {
-    //    // TODO use custom sorting (pkg first etc) instead of auto sorting
-    //    this.gruntfile.insertConfig('pkg', 'grunt.file.readJSON(\'package.json\')');
-    //
-    //    var notifyHooksConfig = {
-    //        options: {
-    //            enabled: true,
-    //            'max_jshint_notifications': 6, // maximum number of notifications from jshint output
-    //            title: '<%= pkg.name.toLowerCase() %>', // defaults to the name in package.json, or will use project directory's name
-    //            success: false, // whether successful grunt executions should be notified automatically
-    //            duration: 3 // the duration of notification in seconds, for `notify-send only
-    //        }
-    //    };
-    //
-    //    //this.gruntfile.insertConfig('\'notify_hooks\'', JSON.stringify(notifyHooksConfig, null, 4));
-    //    this.gruntfile.insertConfig('\'notify_hooks\'', JSON.stringify(notifyHooksConfig));
-    //},
     copyTemplates: function() {
         this.fs.copy(
             this.templatePath('_img/logo.png'),
