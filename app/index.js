@@ -16,6 +16,7 @@
 var generators = require('yeoman-generator'),
     yosay = require('yosay'),
     path = require('path'),
+    chalk = require('chalk'),
     pkg = require('../package.json');
 
 // an example: https://github.com/yeoman/generator-gruntplugin/blob/master/app/index.js
@@ -60,6 +61,7 @@ module.exports = generators.Base.extend({
         this.write('package.json', JSON.stringify(pkgFile, null, 4));
     },
     installDevDependencies: function() {
+        var self = this;
         this.npmInstall([
             'grunt',
             'grunt-browser-sync',
@@ -73,7 +75,13 @@ module.exports = generators.Base.extend({
             'grunt-sass', 'grunt-sass-lint',
             'jasmine-core', 'karma', 'karma-coverage', 'karma-jasmine', 'karma-phantomjs-launcher', 'grunt-karma',
             'load-grunt-tasks',
-            'time-grunt'], { 'saveDev': true });
+            'time-grunt'],
+            { 'saveDev': true },
+            function() {
+                console.log('Dev dependency installation completed.');
+                self.outtro(); // Show the outtro a second time, after installing the packages.
+            }
+        );
     },
     copyTemplates: function() {
         this.fs.copy(
@@ -93,6 +101,6 @@ module.exports = generators.Base.extend({
         );
     },
     outtro: function() {
-        console.log('run ```grunt``` and visit the server at http://localhost:8282/_stubs/');
+        console.log(chalk.bold.green('Run `grunt` and visit the server at http://localhost:8282/_stubs/'));
     }
 });
