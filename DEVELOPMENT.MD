@@ -27,11 +27,14 @@ It is possible to check the installed version of a npm package with (but this do
 
 Grunt release can be used to update the package.json number, create a git tag, create a CHANGELOG and publish to npm. 
 
-dry run:
+First, manually add a summary of the changes for this release to the top of CHANGELOG.MD. Might be automized with https://github.com/ericmatthys/grunt-changelog
+
+Dry run:
 
 ```grunt release --no-write```
 
-finalize:
+Finalize:
 
 ```grunt release```
  
+It's also possible to set a specific version number, see https://github.com/geddski/grunt-release
