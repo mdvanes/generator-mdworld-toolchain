@@ -77,49 +77,19 @@ module.exports = generators.Base.extend({
     },
     copyTemplates: function() {
         this.fs.copy(
-            this.templatePath('_img/logo.png'),
-            this.destinationPath('_img/logo.png')
-        );
-        this.fs.copy(
-            this.templatePath('_js/app.js'),
-            this.destinationPath('_js/app.js')
-        );
-        this.fs.copy(
-            this.templatePath('_sass/styles.scss'),
-            this.destinationPath('_sass/styles.scss')
+            this.templatePath('**/*'),
+            this.destinationRoot(),
+            {
+                globOptions: {
+                    dot: true,
+                    ignore: ['_stubs/index.html'] // This doesn't seem to ignore, but the file is overwritten below anyway
+                }
+            }
         );
         this.fs.copyTpl(
             this.templatePath('_stubs/index.html'),
             this.destinationPath('_stubs/index.html'),
             { projectName: this.props.name }
-        );
-        this.fs.copy(
-            this.templatePath('_test/appSpec.js'),
-            this.destinationPath('_test/appSpec.js')
-        );
-        this.fs.copy(
-            this.templatePath('_.gitignore'),
-            this.destinationPath('.gitignore')
-        );
-        this.fs.copy(
-            this.templatePath('_.jscsrc'),
-            this.destinationPath('.jscsrc')
-        );
-        this.fs.copy(
-            this.templatePath('_.jshintrc'),
-            this.destinationPath('.jshintrc')
-        );
-        this.fs.copy(
-            this.templatePath('_sass-lint.yml'),
-            this.destinationPath('sass-lint.yml')
-        );
-        this.fs.copy(
-            this.templatePath('_Gruntfile.js'),
-            this.destinationPath('Gruntfile.js')
-        );
-        this.fs.copy(
-            this.templatePath('_karma.conf.js'),
-            this.destinationPath('karma.conf.js')
         );
     },
     outtro: function() {
