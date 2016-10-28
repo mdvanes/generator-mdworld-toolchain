@@ -1,8 +1,9 @@
 (function() {
     'use strict';
 
-    window.myAppTest = function() {
+    var myAppTest = function() {
         return 'app.js';
     };
     console.log(myAppTest());
+    window.myAppTest = myAppTest;
 })();
